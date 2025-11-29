@@ -1,0 +1,15 @@
+---
+# Path to user's home directory
+zshrc_user_home: "{{ ansible_facts.env.HOME }}"
+
+# Oh My Zsh theme
+zsh_theme: "robbyrussell"
+
+# Oh My Zsh plugins
+zsh_plugins: []
+
+# Additional environment variables
+zsh_custom_exports: {}
+
+# Custom aliases
+zsh_custom_aliases: {}

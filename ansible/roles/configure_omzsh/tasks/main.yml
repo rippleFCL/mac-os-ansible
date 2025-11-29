@@ -1,0 +1,30 @@
+---
+- name: Check if omz exists
+  ansible.builtin.stat:
+    path: "{{ ansible_facts.env.HOME }}/.oh-my-zsh"
+  register: st
+
+- name: Install omzsh
+  when: not st.stat.exists
+  block:
+    - name: Clone oh my zsh
+      ansible.builtin.git:
+        repo: https://github.com/ohmyzsh/ohmyzsh.git
+        dest: "{{ ansible_facts.env.HOME }}/.oh-my-zsh"
+
+    - name: Clone p10k
+      ansible.builtin.git:
+        repo: https://github.com/romkatv/powerlevel10k.git
+        dest: "{{ ansible_facts.env.HOME }}/.oh-my-zsh/custom/themes/powerlevel10k"
+
+    - name: Clone plugins
+      ansible.builtin.git:
+        repo: "{{ item.value }}"
+        dest: "{{ ansible_facts.env.HOME }}/.oh-my-zsh/custom/plugins/{{ item.key }}"
+      loop: "{{ install_zsh_plugins | dict2items }}"
+
+    - name: Set oh my zsh perms
+      ansible.builtin.file:
+        path: "{{ ansible_facts.env.HOME }}/.oh-my-zsh"
+        mode: 'go-w'
+        recurse: true

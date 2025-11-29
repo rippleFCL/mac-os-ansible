@@ -1,0 +1,7 @@
+---
+- name: Deploy .zshrc to user home directory
+  ansible.builtin.template:
+    src: zshrc.j2
+    dest: "{{ zshrc_user_home }}/.zshrc"
+    mode: '0644'
+    backup: yes

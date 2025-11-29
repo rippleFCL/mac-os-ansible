@@ -1,0 +1,12 @@
+---
+# Homebrew packages to install
+brew_packages: []
+
+# Homebrew casks to install
+brew_casks: []
+
+# Whether to upgrade all packages
+brew_upgrade_all: false
+
+# Whether to update homebrew before installing
+brew_update: true

@@ -1,0 +1,31 @@
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load
+ZSH_THEME="{{ zsh_theme }}"
+
+# Plugins to load
+plugins=({% for plugin in zsh_plugins %}{{ plugin }} {% endfor %})
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+{% if zsh_custom_exports %}
+# Custom environment variables
+{% for key, value in zsh_custom_exports.items() %}
+export {{ key }}="{{ value }}"
+{% endfor %}
+{% endif %}
+
+{% if zsh_custom_aliases %}
+# Custom aliases
+{% for alias_name, alias_command in zsh_custom_aliases.items() %}
+alias {{ alias_name }}="{{ alias_command }}"
+{% endfor %}
+{% endif %}
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# Additional custom configuration can be added below

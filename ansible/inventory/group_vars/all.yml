@@ -1,0 +1,84 @@
+---
+
+ansible_python_interpreter: "{{ ansible_playbook_python }}"
+
+# configure_omzsh role variables
+install_zsh_plugins:
+  zsh-autocomplete: https://github.com/marlonrichert/zsh-autocomplete.git
+  zsh-autosuggestions: https://github.com/zsh-users/zsh-autosuggestions.git
+  zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+# deploy_zshrc role variables
+zsh_theme: "powerlevel10k/powerlevel10k"
+
+dotfiles:
+  - src: .p10k.zsh
+    dest: .p10k.zsh
+    type: copy
+
+zsh_plugins:
+  - git
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - z
+
+# install_brew_packages role variables
+brew_packages:
+  - direnv
+  - ffmpeg
+  - fzf
+  - gh
+  - golangci-lint
+  - gource
+  - hashicorp/tap/terraform
+  - htop
+  - ipmitool
+  - lefthook
+  - libpq
+  - libxmlsec1
+  - node
+  - pkgconf
+  - poetry
+  - python@3.11
+  - python@3.12
+  - python@3.13
+  - redis
+  - telnet
+  - unar
+  - uv
+  - jq
+
+brew_casks:
+  - alfred
+  - alt-tab
+  - arduino-ide
+  - autodesk-fusion
+  - crossover
+  - discord
+  - firefox
+  - firefox@developer-edition
+  - font-jetbrains-mono-nerd-font
+  - font-meslo-lg-nerd-font
+  - google-chrome
+  - home-assistant
+  - iterm2
+  - loopback
+  - mac-mouse-fix
+  - mitmproxy
+  - moonlight
+  - mullvad-vpn
+  - notion
+  - notion-calendar
+  - orbstack
+  - orcaslicer
+  - postman
+  - spotify
+  - steam
+  - telegram
+  - visual-studio-code
+  - whatsapp
+  - windows-app
+
+zsh_custom_aliases:
+  tf: terraform
+  pea: "$(poetry env activate)"

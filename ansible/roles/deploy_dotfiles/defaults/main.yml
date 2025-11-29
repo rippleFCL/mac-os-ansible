@@ -1,0 +1,17 @@
+---
+# Path to user's home directory
+dotfiles_user_home: "{{ ansible_facts.env.HOME }}"
+
+# List of dotfiles to deploy
+# Each item should have:
+#   - src: source file path (from templates/ or files/ directory)
+#   - dest: destination filename in home directory
+#   - type: 'template' (default, Jinja2 templating) or 'copy' (direct copy)
+dotfiles: []
+  # Example:
+  # - src: gitconfig.j2
+  #   dest: .gitconfig
+  #   type: template
+  # - src: .p10k.zsh
+  #   dest: .p10k.zsh
+  #   type: copy

@@ -1,0 +1,22 @@
+---
+- name: Deploy dotfile templates to user home directory
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ dotfiles_user_home }}/{{ item.dest }}"
+    mode: '0644'
+    backup: yes
+  loop: "{{ dotfiles }}"
+  when:
+    - dotfiles | length > 0
+    - item.type | default('template') == 'template'
+
+- name: Copy dotfiles to user home directory
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ dotfiles_user_home }}/{{ item.dest }}"
+    mode: '0644'
+    backup: yes
+  loop: "{{ dotfiles }}"
+  when:
+    - dotfiles | length > 0
+    - item.type | default('template') == 'copy'

@@ -1,0 +1,28 @@
+---
+- name: Configure macOS development environment
+  hosts: localhost
+  become: false
+
+  roles:
+    - role: install_brew_packages
+      tags:
+        - brew
+        - packages
+        - install
+
+    - role: configure_omzsh
+      tags:
+        - zsh
+        - omzsh
+        - shell
+
+    - role: deploy_zshrc
+      tags:
+        - zsh
+        - dotfiles
+        - config
+
+    - role: deploy_dotfiles
+      tags:
+        - dotfiles
+        - config
